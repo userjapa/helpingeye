@@ -3,3 +3,11 @@ body {
   height: 100vh;
   width: 100vw;
 }
+
+.display {
+  max-height: calc(100% - 30px);
+}
+
+.display-item {
+  max-height: 50%;
+}

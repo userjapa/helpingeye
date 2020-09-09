@@ -1,6 +1,5 @@
 (async () => {
-  const synth  = window.speechSynthesis,
-        voices = synth.getVoices()
+  const synth  = window.speechSynthesis
 
   const video  = document.getElementById('camera'),
         canvas = document.getElementById('picture'),
@@ -51,19 +50,15 @@
     if (!json.valid)
       return alert('Failed to extract text')
 
-    let text = ''
+    const text = (json.data.text || '').replace(/\n/g, '').trim()
 
-    if (json.data.text)
-      text = text.replace(/\r?\n|\r/g, '')
+    const voices = synth.getVoices(),
+          voice  = voices.filter(v => v.lang == 'pt-BR')
 
-    if(text) {
-      const voice = voices.filter(v => v.lang == 'pt-BR')
+    const utter = new SpeechSynthesisUtterance(text || 'Texto não reconhecido')
 
-      const utter = new SpeechSynthesisUtterance(text)
+    utter.voice = voice.pop()
 
-      utter.voice = voice.pop()
-
-      synth.speak(utter)
-    }
+    synth.speak(utter)
   })
 })(window)
