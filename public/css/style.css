@@ -5,9 +5,9 @@ body {
 }
 
 .display {
-  max-height: calc(100% - 30px);
+  max-height: calc(100% - 40px);
 }
 
-.display-item {
+/* .display-item {
   max-height: 50%;
-}
+} */
