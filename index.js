@@ -2,11 +2,13 @@ const express    = require('express'),
       bodyParser = require('body-parser'),
       cors       = require('cors'),
       https      = require('https'),
+      http       = require('http'),
       fs         = require('fs')
 
 const routes = require('./routes')
 
-const PORT = process.env.PORT || 8080
+const PORT1 = process.env.PORT1 || 8080,
+      PORT2 = process.env.PORT2 || 8081
 
 const app = express()
 
@@ -30,4 +32,7 @@ const options = {
 routes(app)
 
 https.createServer(options, app)
-     .listen(PORT, () => console.log(`Running at port ${PORT}`))
+     .listen(PORT1, () => console.log(`Running at port ${PORT1}`))
+
+http.createServer(app)
+    .listen(PORT2, () => console.log(`Running at port ${PORT2}`))
