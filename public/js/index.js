@@ -55,7 +55,7 @@
     const voices = synth.getVoices(),
           voice  = voices.filter(v => v.lang == 'pt-BR')
 
-    alert(voices.filter(v => v.lang == 'pt-BR').map(v => v.name).join('\n'))
+    alert(voices.map(v => v.name).join('\n'))
 
     const utter = new SpeechSynthesisUtterance(text || 'Texto não reconhecido')
 
