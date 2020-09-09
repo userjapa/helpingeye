@@ -1,4 +1,7 @@
 (async () => {
+  const synth  = window.speechSynthesis,
+        voices = synth.getVoices()
+
   const video  = document.getElementById('camera'),
         canvas = document.getElementById('picture'),
         button = document.getElementById('capture')
@@ -45,10 +48,22 @@
 
     const json = await response.json()
 
-    console.log(json)
     if (!json.valid)
-      alert('Failed to extract text')
-    else
-      alert(json.data.text)
+      return alert('Failed to extract text')
+
+    let text = ''
+
+    if (json.data.text)
+      text = text.replace(/\r?\n|\r/g, '')
+
+    if(text) {
+      const voice = voices.filter(v => v.lang == 'pt-BR')
+
+      const utter = new SpeechSynthesisUtterance(text)
+
+      utter.voice = voice.pop()
+
+      synth.speak(utter)
+    }
   })
 })(window)
