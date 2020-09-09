@@ -1,6 +1,8 @@
 const express    = require('express'),
       bodyParser = require('body-parser'),
-      cors       = require('cors')
+      cors       = require('cors'),
+      https      = require('https'),
+      fs         = require('fs')
 
 const routes = require('./routes')
 
@@ -17,6 +19,15 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }))
 
+const options = {
+  key: fs.readFileSync('./cert/key.pem', 'utf8'),
+  cert: fs.readFileSync('./cert/cert.pem', 'utf8'),
+  passphrase: 'opensource',
+  requestCert: false,
+  rejectUnauthorized: false
+}
+
 routes(app)
 
-app.listen(PORT, () => console.log(`Running at port ${PORT}`))
+https.createServer(options, app)
+     .listen(PORT, () => console.log(`Running at port ${PORT}`))
