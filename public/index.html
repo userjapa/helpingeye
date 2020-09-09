@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <div class="h-screen flex flex-col justify-center items-center p-2">
-      <div class="flex-1 flex w-full flex-wrap">
-        <video id="camera" class="flex-auto" autoplay muted></video>
-        <div class="flex-auto flex justify-center items-center">
+    <div class="h-screen flex flex-col justify-center items-center p-2 max-h-full max-w-full">
+      <div class="grid sm:grid-rows-2 sm:grid-cols-none lg:grid-cols-2 lg:grid-rows-none">
+        <video id="camera" autoplay muted></video>
+        <div class="flex justify-center items-center">
           <canvas id="picture"></canvas>
         </div>
       </div>
