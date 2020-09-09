@@ -1,0 +1,23 @@
+{
+  "name": "myeyes",
+  "version": "1.0.0",
+  "description": "I talk what you see",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "node-tesseract-ocr": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "repository": "https://github.com/userjapa/myeyes.git",
+  "author": "userjapa",
+  "license": "MIT",
+  "private": false
+}
