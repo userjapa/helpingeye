@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyEyes</title>
+    <!-- Reset -->
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- Libs -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="h-screen flex flex-col justify-center items-center p-2">
+      <div class="flex-1 flex w-full flex-wrap">
+        <video id="camera" class="flex-auto" autoplay muted></video>
+        <div class="flex-auto flex justify-center items-center">
+          <canvas id="picture"></canvas>
+        </div>
+      </div>
+      <button id="capture" class="w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">Capturar</button>
+    </div>
+
+    <!-- Index -->
+    <script type="text/javascript" src="./js/index.js"></script>
+  </body>
+</html>
