@@ -4,10 +4,10 @@ body {
   width: 100vw;
 }
 
-/* .display {
-  max-height: calc(100% - 40px);
-} */
+.display {
+  height: calc(100% - 40px);
+}
 
-/* .display-item {
-  max-height: 50%;
-} */
+.item {
+  margin: auto;
+}
