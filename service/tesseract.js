@@ -5,6 +5,7 @@ module.exports = {
     const options = {
       lang,
       psm: 11,
+      oem: 3,
       env: {
         maxBuffer: 4096 * 4096
       }
