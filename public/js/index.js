@@ -50,7 +50,7 @@
     if (!json.valid)
       return alert('Failed to extract text')
 
-    const text = (json.data.text || '').replace(/\n/g, '').trim()
+    const text = (json.data.text || '').replace(/\u21b5/g,'').trim()
 
     const voices = synth.getVoices(),
           voice  = voices.filter(v => v.lang == 'pt-BR')
