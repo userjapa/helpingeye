@@ -7,7 +7,3 @@ body {
 .display {
   height: calc(100% - 40px);
 }
-
-.item {
-  margin: auto;
-}
