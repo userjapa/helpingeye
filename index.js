@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express    = require('express'),
       bodyParser = require('body-parser'),
       cors       = require('cors'),
@@ -7,8 +9,8 @@ const express    = require('express'),
 
 const routes = require('./routes')
 
-const PORT1 = process.env.PORT1 || 8080,
-      PORT2 = process.env.PORT2 || 8081
+const PORT     = process.env.NODE_ENV == 'production' ? process.env.PORT : process.env.DEV_PORT,
+      PORT_SSL = process.env.NODE_ENV == 'production' ? process.env.PORT_SSL : process.env.DEV_PORT_SSL
 
 const app = express()
 
@@ -32,7 +34,7 @@ const options = {
 routes(app)
 
 https.createServer(options, app)
-     .listen(PORT1, () => console.log(`Running at port ${PORT1}`))
+     .listen(PORT_SSL, () => console.log(`Running at port ${PORT_SSL}`))
 
 http.createServer(app)
-    .listen(PORT2, () => console.log(`Running at port ${PORT2}`))
+    .listen(PORT, () => console.log(`Running at port ${PORT}`))

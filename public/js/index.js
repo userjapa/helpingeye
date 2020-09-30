@@ -40,7 +40,7 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        lang: 'por',
+        lang: 'pt-BR',
         data: canvas.toDataURL('image/png')
       })
     })

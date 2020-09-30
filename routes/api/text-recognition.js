@@ -2,7 +2,7 @@ const express = require('express'),
       fs      = require("fs"),
       path    = require('path')
 
-const tesseract = require('./../../service/tesseract')
+const gcloud = require('./../../service/google-cloud')
 
 const router = express.Router()
 
@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
   try {
     fs.writeFileSync(filePath, data, { encoding: 'base64' })
 
-    const text = await tesseract.recognize(filePath, data.lang)
+    const text = await gcloud.getText(filePath, data.lang)
 
     res.json({
       valid: true,

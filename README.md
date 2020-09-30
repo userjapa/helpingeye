@@ -1,2 +1,2 @@
-# myeyes
-I talk what you see
+# helpingeye
+I will help you see :)
