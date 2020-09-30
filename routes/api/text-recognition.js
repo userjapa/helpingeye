@@ -6,30 +6,39 @@ const gcloud = require('./../../service/google-cloud')
 
 const router = express.Router()
 
+function deleteFile (filePath) {
+  if (fs.existsSync(filePath))
+    fs.unlinkSync(filePath)
+}
+
 router.post('/', async (req, res) => {
   const data     = req.body.data.split(';base64,').pop(),
-        fileName = `${Date.now()}-${req.headers['x-forwarded-for'] || req.connection.remoteAddress}.png`,
+        fileName = `${Date.now()}.png`,
         filePath = path.resolve(__dirname, `../../files/${fileName}`)
 
   try {
     fs.writeFileSync(filePath, data, { encoding: 'base64' })
 
-    const text = await gcloud.getText(filePath, data.lang)
+    let speech = '',
+        text   = await gcloud.getText(filePath)
+
+    text = text.replace(/\u21b5/g,'. ').trim()
+
+    if (text)
+      speech = await gcloud.getSpeech(text, req.body.lang)
 
     res.json({
       valid: true,
       data: {
-        text
+        speech
       }
     })
   } catch (error) {
     res.json({
-      valid: false,
-      data: {}
+      valid: false
     })
   } finally {
-    if (fs.existsSync(filePath))
-      fs.unlinkSync(filePath)
+    deleteFile(filePath)
   }
 })
 

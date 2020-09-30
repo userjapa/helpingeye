@@ -1,6 +1,4 @@
 (async () => {
-  const synth  = window.speechSynthesis
-
   const video  = document.getElementById('camera'),
         canvas = document.getElementById('picture'),
         button = document.getElementById('capture')
@@ -26,6 +24,12 @@
   button.addEventListener('click', async event => {
     event.preventDefault()
 
+    button.disabled = true
+    button.classList.add('opacity-50')
+    button.classList.add('cursor-not-allowed')
+
+    video.pause()
+
     const context = canvas.getContext('2d')
 
     const height = video.videoHeight,
@@ -50,17 +54,17 @@
     if (!json.valid)
       return alert('Failed to extract text')
 
-    const text = (json.data.text || '').replace(/\u21b5/g,'').trim()
+    const speech = json.data.speech
 
-    const voices = synth.getVoices(),
-          voice  = voices.filter(v => v.lang == 'pt-BR')
+    if (speech) {
+      const audio = new Audio('data:audio/mp3;base64,' + speech)
 
-    console.log('Voices:', voices.map(v => v.name))
+      audio.play()
+    }
 
-    const utter = new SpeechSynthesisUtterance(text || 'Texto não reconhecido')
-
-    utter.voice = voice.pop()
-
-    synth.speak(utter)
+    video.play()
+    button.disabled = false
+    button.classList.remove('opacity-50')
+    button.classList.remove('cursor-not-allowed')
   })
 })(window)

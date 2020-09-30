@@ -3,6 +3,9 @@ helpingeye.json
 
 node_modules/
 
+files/
+cert/
+
 yarn-error.log
 yarn.lock
 package-lock.json

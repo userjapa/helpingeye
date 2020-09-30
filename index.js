@@ -26,7 +26,7 @@ app.use(cors({
 const options = {
   key: fs.readFileSync('./cert/key.pem', 'utf8'),
   cert: fs.readFileSync('./cert/cert.pem', 'utf8'),
-  passphrase: 'opensource',
+  passphrase: process.env.PASSPHRASE,
   requestCert: false,
   rejectUnauthorized: false
 }
