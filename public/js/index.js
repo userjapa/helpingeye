@@ -52,12 +52,12 @@
     const json = await response.json()
 
     if (!json.valid) {
-      return alert('Failed to extract text')
-
       video.play()
       button.disabled = false
       button.classList.remove('opacity-50')
       button.classList.remove('cursor-not-allowed')
+      
+      return alert('Failed to extract text')
     }
 
     const speech = json.data.speech
